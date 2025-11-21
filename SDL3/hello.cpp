@@ -10,6 +10,9 @@ public:
     TESTG() : window(nullptr), renderer(nullptr), font(nullptr), running(false) {}
 
     bool Init() {
+        const int window_w = 640;
+        const int window_h = 480;
+        
         int ret = SDL_Init(SDL_INIT_VIDEO);
         if (ret < 0) {
             SDL_Log("SDL_Init() Error: %s", SDL_GetError());
@@ -21,7 +24,7 @@ public:
             return false;
         }
 
-        window = SDL_CreateWindow("SDL3 TTF Sample", 800, 600, SDL_WINDOW_RESIZABLE);
+        window = SDL_CreateWindow("SDL3 TTF Sample", window_w, window_h, SDL_WINDOW_RESIZABLE);
         if (!window) {
             std::cerr << "SDL_CreateWindow Error: " << SDL_GetError() << std::endl;
             return false;
