@@ -1,14 +1,23 @@
 ■SDL3公式からライブラリをダウンロード(/MD)
+
 　SDL3_ttf-devel-3.2.2-VC
+ 
 　SDL3-devel-3.2.26-VC
 
 ■ライブラリ等を配置
+
 　projectdir/include/SDL3
+ 
 　projectdir/include/SDL3_ttf
+ 
 　projectdir/lib/x64/SDL3.dll
+ 
 　projectdir/lib/x64/SDL3.lib
+ 
 　projectdir/lib/x64/SDL3_ttf.dll
+ 
 　projectdir/lib/x64/SDL3_ttf.lib
+ 
 
 ■プロジェクトの依存関係設定
 　追加のインクルードディレクトリ：include;
