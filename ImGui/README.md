@@ -16,4 +16,8 @@ https://github.com/jpcy/bgfx-minimal-example/tree/master
  
 ■imguiの実装で参考になりそう。キーインプットとか。
 
-https://github.com/JoshuaBrookover/bigg
+git clone https://github.com/JoshuaBrookover/bigg.git
+cd bigg
+git submodule update --init --recursive
+cmake . -G "Visual Studio 17 2022"
+
