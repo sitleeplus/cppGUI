@@ -15,9 +15,9 @@ https://github.com/jpcy/bgfx-minimal-example/tree/master
  　/Zc:__cplusplus /Zc:preprocessor
  
 ■imguiの実装で参考になりそう。キーインプットとか。
-
-git clone https://github.com/JoshuaBrookover/bigg.git
-cd bigg
+　（古い：git clone https://github.com/JoshuaBrookover/bigg.git）
+git clone https://github.com/yuki-koyama/bigger.git
+cd bigger
 git submodule update --init --recursive
-cmake . -G "Visual Studio 17 2022"
+cmake . -G "Visual Studio 17 2022" -DCMAKE_POLICY_VERSION_MINIMUM=3.5
 
