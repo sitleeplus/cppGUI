@@ -1,5 +1,6 @@
 https://github.com/jpcy/bgfx-minimal-example/tree/master
-のhelloworld.cpp/helloworld-mt.cppがよくできているのでベースにしてよい。
+
+のhelloworld.cpp/helloworld-mt.cppがよくできているのでベースにする。
 
 
 ■環境
@@ -13,4 +14,6 @@ https://github.com/jpcy/bgfx-minimal-example/tree/master
 　・C/C++→コマンドラインに追加
  　/Zc:__cplusplus /Zc:preprocessor
  
-■
+■imguiの実装で参考になりそう。キーインプットとか。
+
+https://github.com/JoshuaBrookover/bigg
