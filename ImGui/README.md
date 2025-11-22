@@ -3,6 +3,9 @@ https://github.com/jpcy/bgfx-minimal-example/tree/master
 のhelloworld.cpp/helloworld-mt.cppがよくできているのでベースにする。
 
 
+■imgui+implotの実装例
+https://github.com/sukesh-ak/ImGui-GLFW-OpenGL3
+
 ■環境
 　・GLFWを入れる。glfw-3.4.bin.WIN64からincludeとlibとdllを持ってくる。glfw3dll.libはglfw3.libにリネームして使う。
  
