@@ -54,9 +54,42 @@ vulkan::headersだけはどうにもならなかったのでCMakeLists.txtを編
 # 元々:
 find_package(VulkanHeaders REQUIRED)
 
-# 修正案:
-find_path(Vulkan_INCLUDE_DIR NAMES vulkan/vulkan.h)
-if(NOT Vulkan_INCLUDE_DIR)
-    message(FATAL_ERROR "Unable to find Vulkan headers")
+# 動いたもの:
+　# Find Vulkan-related packages
+#WORKAROUND glslang does not look for SPIRV-Tools-opt but needs it on macOS, harmless elsewhere
+find_package(SPIRV-Tools-opt REQUIRED)
+if(DEFINED VULKAN_SDK_PATH)
+	#WORKAROUND The Vulkan SDK ships incomplete cmake config files.
+	# Work around this, which does require FindVulkan.cmake.
+	# FindVulkan does not find glslang correctly on macOS
+	find_package(Vulkan REQUIRED COMPONENTS glslc shaderc_combined SPIRV-Tools)
+	find_package(glslang REQUIRED)
+	add_library(Vulkan::Loader ALIAS Vulkan::Vulkan)
+else()
+	find_package(glslang REQUIRED)
+
+	# Vulkan headers
+	find_path(Vulkan_INCLUDE_DIR NAMES vulkan/vulkan.h)
+	if(NOT Vulkan_INCLUDE_DIR)
+	    message(FATAL_ERROR "Unable to find Vulkan headers")
+	endif()
+
+	add_library(Vulkan::Headers INTERFACE IMPORTED)
+	set_target_properties(Vulkan::Headers PROPERTIES
+	    INTERFACE_INCLUDE_DIRECTORIES "${Vulkan_INCLUDE_DIR}")
+
+	# Vulkan loader (Windows は vulkan-1.lib)
+	find_library(VulkanLoader_LIB NAMES vulkan-1 REQUIRED)
+
+	add_library(Vulkan::Loader SHARED IMPORTED)
+	# DLL の場所（vcpkg なら installed/x64-windows/bin/vulkan-1.dll）
+	set_target_properties(Vulkan::Loader PROPERTIES
+	    IMPORTED_LOCATION "${VulkanLoader_LIB}"
+	)
+	
+	# インポートライブラリの場所（vcpkg なら installed/x64-windows/lib/vulkan-1.lib）
+	set_target_properties(Vulkan::Loader PROPERTIES
+	    IMPORTED_IMPLIB "${VulkanLoader_LIB}"
+	)
+
 endif()
-include_directories(${Vulkan_INCLUDE_DIR})
