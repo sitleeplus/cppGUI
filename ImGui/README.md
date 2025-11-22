@@ -93,3 +93,6 @@ else()
 	)
 
 endif()
+
+
+ただし、vcpkgでインストールしたところにpath通っておらず、visual studioのビルドは失敗。あきらめる。
