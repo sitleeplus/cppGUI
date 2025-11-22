@@ -2,6 +2,11 @@ https://github.com/jpcy/bgfx-minimal-example/tree/master
 
 のhelloworld.cpp/helloworld-mt.cppがよくできているのでベースにする。
 
+■bgfx
+ git clone (bgfx,bx,bimgのURL)
+ cd bgfx
+ "../bx/tools/bin/windows/genie.exe" --with-examples vs2022
+
 
 ■imgui+implotの実装例
 https://github.com/sukesh-ak/ImGui-GLFW-OpenGL3
