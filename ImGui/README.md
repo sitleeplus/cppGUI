@@ -28,8 +28,7 @@ cmake . -G "Visual Studio 17 2022" -DCMAKE_POLICY_VERSION_MINIMUM=3.5
 ・https://github.com/ngscopeclient/scopehal-apps/tree/master
 vcpkg.jsonをつくってvcpkg install
 見つからない不具合があったらset PATH=C:\Users\cl-p\source\repos\scopehal-apps\vcpkg_installed\x64-windows\share\glfw3;%PATH%
-とかする。
-
+とかでパスを通す。
 {
   "name": "scopehal-apps",
   "version": "0.1",
@@ -38,7 +37,26 @@ vcpkg.jsonをつくってvcpkg install
     "yaml-cpp",
     "libsigcpp",
     "glfw3",
-    "spirv-tools"
+    "spirv-tools",
+    "glslang",
+    "vulkan-headers",
+    "vulkan-loader",
+    "shaderc",
+    "hidapi",
+    "zlib",
+    "libpng",
+    "catch2",
+    "fftw3"
   ]
 }
 
+vulkan::headersだけはどうにもならなかったのでCMakeLists.txtを編集した。
+# 元々:
+find_package(VulkanHeaders REQUIRED)
+
+# 修正案:
+find_path(Vulkan_INCLUDE_DIR NAMES vulkan/vulkan.h)
+if(NOT Vulkan_INCLUDE_DIR)
+    message(FATAL_ERROR "Unable to find Vulkan headers")
+endif()
+include_directories(${Vulkan_INCLUDE_DIR})
